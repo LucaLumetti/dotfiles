@@ -1,0 +1,12 @@
+@theme "/usr/share/rofi/themes/spaceduck.rasi"
+
+configuration {
+	modi: "window,drun,ssh,combi";
+	font: "RobotoMono NF 18";
+	combi-modi: "window,drun,ssh";
+}
+
+window {
+	location:	 center;
+	anchor:		 center;
+}
