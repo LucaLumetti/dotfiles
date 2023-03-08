@@ -1,19 +1,35 @@
 vim.g.mapleader = ','
 
 vim.opt.number = true
+vim.opt.relativenumber = true
+
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
 vim.opt.hlsearch = false
+vim.opt.incsearch = false
 
 vim.opt.wrap = true
 vim.opt.breakindent = true
+
+vim.opt.smartindent = true
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.keymap.set({'n', 'x'}, 'cp', '"+y')
-vim.keymap.set({'n', 'x'}, 'cv', '"+p')
+vim.opt.swapfile = false
+vim.opt.backup = false
+
+vim.opt.scrolloff = 8
+vim.opt.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
+
+vim.opt.updatetime = 50
+vim.opt.colorcolumn = "80"
+
+vim.keymap.set({'n', 'x'}, 'cy', '"+y')
+vim.keymap.set({'n', 'x'}, 'cp', '"+p')
 vim.keymap.set({'n', 'x'}, 'x', '"_x')
 
 local lazy = {}

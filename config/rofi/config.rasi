@@ -1,12 +1,130 @@
 @theme "/usr/share/rofi/themes/spaceduck.rasi"
+/**
+ * ROFI Color theme
+ * User: llumetti
+ * Copyright: Luca Lumetti
+ */
+
+* {
+    text-color:  #ecf0c1;
+    background-color:  rgba(230,44,11,0);
+    dark: #1c1c1c;
+
+    black:       #000000;
+    lightblack:  #686f9a;
+
+    red:         #e33400;
+    lightred:    #e33400;
+
+    green:       #5ccc96;
+    lightgreen:  #5ccc96;
+
+    yellow:      #f2ce00;
+    lightyellow: #f2ce00;
+
+    blue:      #7a5ccc; // purple2
+    lightblue: #b3a1e6; // purple
+
+    magenta:      #ce6f8f;
+    lightmagenta: #ce6f8f;
+
+    cyan:      #00a3cc;
+    lightcyan: #00a3cc;
+
+    white:      #686f9a;
+    lightwhite: #f0f1ce;
+
+    highlight:	bold #5ccc96;
+}
+
+window {
+    height:   50%;
+    width: 30em;
+    location: center;
+    anchor:   center;
+    border:  0px 0px 0px 0px;
+    text-color: @lightwhite;
+}
+
+mode-switcher {
+    border: 2px 0px 0px 0px;
+    background-color: @lightblack;
+    padding: 4px;
+}
+
+button selected {
+    border-color: @lightgreen;
+    text-color: @lightgreen;
+}
+
+inputbar {
+    background-color: @lightblack;
+    text-color: @lightgreen;
+    padding: 8px;
+    border: 0px 0px 2px 0px;
+}
+
+mainbox {
+    expand: true;
+    background-color: #1c1c1cee;
+    spacing: 1em;
+    padding: 4px;
+}
+
+listview {
+    padding: 8px;
+    dynamic: true;
+    lines: 0;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+element selected  normal {
+    background-color: @blue;
+}
+
+element normal active {
+    text-color: @lightblue;
+}
+
+element normal urgent {
+    text-color: @lightred;
+}
+
+element alternate normal {
+}
+
+element alternate active {
+    text-color: @lightblue;
+}
+
+element alternate urgent {
+    text-color: @lightred;
+}
+
+element selected active {
+    background-color: @lightblue;
+    text-color: @dark;
+}
+
+element selected urgent {
+    background-color: @lightred;
+    text-color: @dark;
+}
+
+error-message {
+    expand: true;
+    background-color: red;
+    border-color: darkred;
+    border: 2px;
+    padding: 1em;
+}
 
 configuration {
 	modi: "window,drun,ssh,combi";
 	font: "RobotoMono NF 18";
 	combi-modi: "window,drun,ssh";
-}
-
-window {
-	location:	 center;
-	anchor:		 center;
 }

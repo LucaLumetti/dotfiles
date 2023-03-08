@@ -17,7 +17,3 @@ export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 
 source .bw_session # placed outside just to avoi it in the repository
-
-alias vim="nvim"
-alias vi="nvim"
-alias chrome="google-chrome-stable"

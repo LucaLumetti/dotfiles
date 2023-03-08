@@ -109,3 +109,7 @@ fi
 if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
     source "$HOME/.ssh/ssh-agent.env" >/dev/null
 fi
+
+alias vim="nvim"
+alias vi="nvim"
+alias chrome="google-chrome-stable"
