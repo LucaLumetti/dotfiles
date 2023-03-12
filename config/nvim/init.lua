@@ -32,6 +32,11 @@ vim.keymap.set({'n', 'x'}, 'cy', '"+y')
 vim.keymap.set({'n', 'x'}, 'cp', '"+p')
 vim.keymap.set({'n', 'x'}, 'x', '"_x')
 
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', 'H', ':bp<cr>', opts)
+vim.keymap.set('n', 'L', ':bn<cr>', opts)
+
 local lazy = {}
 
 function lazy.install(path)
@@ -108,3 +113,35 @@ vim.api.nvim_create_autocmd(
 )
 
 vim.g.HardMode_level = 'wannabe'
+
+require("nvim-treesitter.configs").setup(
+    {
+        ensure_installed = "python",
+        sync_install = false,
+        highlight = {
+            enable = true,
+            additional_vim_regex_highlighting = false
+        },
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                init_selection = "<CR>",
+                node_incremental = "<CR>",
+                node_decremental = "<BS>",
+                scope_incremental = "<TAB>"
+            }
+        },
+        indent = {
+            enable = false
+        },
+        rainbow = {
+            enable = true,
+            extended_mode = true
+            -- colors = {}, -- table of hex strings
+            -- termcolors = {} -- table of colour name strings
+        },
+        context_commentstring = {
+            enable = true
+        }
+    }
+)
