@@ -126,3 +126,6 @@ super + w
 # bitwarden menu
 super + p
     bwmenu
+
+super + shift + s
+    flameshot gui -c
