@@ -71,27 +71,74 @@ lazy.setup({
     {'wikitopian/hardmode'},
     {'pineapplegiant/spaceduck'},
     {'nvim-lualine/lualine.nvim'},
-    {'neovim/nvim-lspconfig'},
     {'kenn7/vim-arsync'},
+    {
+        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    {'nvim-treesitter/playground'},
+    {'mbbill/undotree'},
+    {
+      'VonHeikemen/lsp-zero.nvim',
+      branch = 'v2.x',
+      dependencies = {
+        -- LSP Support
+        {'neovim/nvim-lspconfig'},             -- Required
+        {                                      -- Optional
+          'williamboman/mason.nvim',
+          build = function()
+            pcall(vim.cmd, 'MasonUpdate')
+          end,
+        },
+        {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+        -- Autocompletion
+        {'hrsh7th/nvim-cmp'},     -- Required
+        {'hrsh7th/cmp-nvim-lsp'}, -- Required
+        {'L3MON4D3/LuaSnip'},     -- Required
+      }
+    },
+    {'tpope/vim-fugitive'},
 })
+
+local lsp = require('lsp-zero')
+
+lsp.preset('recommended')
+
+lsp.ensure_installed({
+    'pyright',
+    'clangd',
+})
+lsp.setup()
 
 
 vim.opt.termguicolors = true
 vim.cmd.colorscheme('spaceduck')
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+local tscope = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', tscope.find_files, {})
+vim.keymap.set('n', '<leader>fg', tscope.live_grep, {})
+vim.keymap.set('n', '<leader>fb', tscope.buffers, {})
+vim.keymap.set('n', '<leader>fh', tscope.help_tags, {})
+vim.keymap.set('n', '<C-p>', tscope.git_files, {})
 
 require('lualine').setup()
 require('nvim-treesitter.configs').setup({
-    ensure_installed = { 'c', 'lua', 'vim', 'help', 'python' },
+    ensure_installed = { 'c', 'lua', 'vim', 'help', 'python', 'javascript' },
     sync_install = false,
-    auto_install = false,
+    auto_install = true,
 
     highlight = {
         enable = true,
+        additional_vim_regex_highlighting = false,
     },
 
-    indent = {
-        enable = true
-    },
+    -- indent = {
+    --     enable = true
+    -- },
 })
 
 vim.g.netrw_banner = 0
@@ -102,7 +149,6 @@ vim.api.nvim_create_user_command('ReloadConfig', 'source $MYVIMRC', {})
 vim.keymap.set('n', '<leader>e', '<cmd>Lexplore<cr>')
 vim.keymap.set('n', '<leader>rc', '<cmd>ReloadConfig<cr>')
 
-require('lspconfig').pyright.setup({})
 
 vim.api.nvim_create_autocmd(
     {'VimEnter,BufNewFile,BufReadPost'},
