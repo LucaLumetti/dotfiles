@@ -104,7 +104,7 @@ fi
 
 # ssh from arch wiki
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$HOME/.ssh/ssh-agent.env"
+    ssh-agent -t 8h > "$HOME/.ssh/ssh-agent.env"
 fi
 if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
     source "$HOME/.ssh/ssh-agent.env" >/dev/null
